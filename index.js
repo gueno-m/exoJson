@@ -28,18 +28,7 @@ const transform = async (input) => {
 
   let  lastIn;
 
-  for(i=0; i<=7; i++) {
-
-    lastIn = o['experiences'][i]['job']['id'];
-    o.experiences[i]['jobId'] = lastIn;
-
-    console.log(o);
-    
-    // console.log(o['experiences'][i]['job']['id']);
-
-};
-
-    // console.log(o);
+  // console.log(o['experiences'].length);
 
   delete o.zipCode;
   delete o.street;
@@ -48,17 +37,16 @@ const transform = async (input) => {
   delete o.birthday;
   delete o['certificates'][0]['certificateType'];
 
-  for(z=0; z<=7; z++) {
+  for(let i=0; i<=o['experiences'].length; i++) {
 
-    delete o['experiences'][z]['job'];
+    lastIn = o['experiences'][i]['job']['id'];
 
-    // console.log(o);
+    o.experiences[i]['jobId'] = lastIn;
 
+    delete o['experiences'][i]['job'];
+
+    return o;
 };
-
-// console.log(o);
-
-  // return o;
 };
 
 (async () => {
